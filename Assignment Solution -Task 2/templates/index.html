@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elasticsearch Employee Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Employee Data Management</h1>
+
+        <!-- Flash message section -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash-message">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %}
+
+        <!-- Create Collections Form -->
+        <form action="/create_collection" method="POST">
+            <h3>Create Collections</h3>
+            <label for="name_collection">Name Collection:</label>
+            <input type="text" id="name_collection" name="name_collection" required>
+
+            <label for="phone_collection">Phone Collection:</label>
+            <input type="text" id="phone_collection" name="phone_collection" required>
+
+            <button type="submit">Create Collections</button>
+        </form>
+
+        <!-- Index Data Form -->
+        <form action="/index_data" method="POST">
+            <h3>Index Data</h3>
+            <label for="index_collection_name">Collection Name:</label>
+            <input type="text" id="index_collection_name" name="collection_name" required>
+
+            <label for="exclude_column">Exclude Column:</label>
+            <input type="text" id="exclude_column" name="exclude_column" required>
+
+            <button type="submit">Index Data</button>
+        </form>
+
+        <!-- Search Form -->
+        <form action="/search" method="POST">
+            <h3>Search Data</h3>
+            <label for="search_collection_name">Collection Name:</label>
+            <input type="text" id="search_collection_name" name="collection_name" required>
+
+            <label for="column_name">Column Name:</label>
+            <input type="text" id="column_name" name="column_name" required>
+
+            <label for="column_value">Column Value:</label>
+            <input type="text" id="column_value" name="column_value" required>
+
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</body>
+</html>
